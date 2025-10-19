@@ -1,1 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>  // for malloc() and free()
+
+int main(void) {
+    int n;
+    int *arr = NULL;
+    int sum = 0;
+    double average = 0.0;
+
+    printf("Enter number of elements: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    // Allocate memory for n integers
+    arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    printf("Enter %d integers: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+
+    average = (double)sum / n;
+
+    printf("Sum = %d\n", sum);
+    printf("Average = %.2f\n", average);
+
+    // Free allocated memory
+    free(arr);
+    arr = NULL;
+
+    return 0;
+}
 
